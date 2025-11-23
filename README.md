@@ -72,3 +72,56 @@ If a required binary is missing, you can compile using Go:
     go install github.com/bitnami-labs/sealed-secrets/cmd/kubeseal@v0.32.2
     $(go env GOPATH)/bin/kubeseal --version
 This binary matches build system and always works for ARM64.
+
+
+
+### Test Deployment Manifest
+Create a deployment file (deployment.yaml) with a Pod that refers to the secret using envFrom:
+
+### 
+
+### Test Deployment Manifest
+Create a deployment file (test-deployment.yaml) with a Pod that refers to the secret using envFrom:
+
+
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: secret-test
+      namespace: default
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: secret-test
+      template:
+        metadata:
+          labels:
+            app: secret-test
+        spec:
+          containers:
+          - name: secret-test-container
+            image: busybox
+            command: [ "sh", "-c", "env; sleep 3600" ]
+            envFrom:
+            - secretRef:
+                name: my-secret
+
+This will inject every key in my-secret as an environment variable into the container (so username and password).​
+
+### Apply Deployment
+
+    kubectl apply -f deployment.yaml
+
+The SealedSecrets controller will decrypt and create your Secret; your Deployment will start and pull in those values.​
+
+### Test the Pod
+To see the injected environment variables:
+
+    kubectl get pods -l app=secret-test
+    kubectl exec -it <pod-name> -- env
+
+You should see username and password environment variables in the output, confirming the secret has been injected into your app's environment.
+
+This will inject every key in my-secret as an environment variable into the container (so username and password).​
+
