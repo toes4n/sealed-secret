@@ -1,8 +1,8 @@
 # sealed-secret
+<img width="598" height="283" alt="image" src="https://github.com/user-attachments/assets/66123fa4-6b1e-44a2-abc1-91a211603469" />
 
 ### 1. Install the Sealed Secrets Controller
 Install the server-side controller and CRD into cluster (namespace: kube-system):
-
 
     kubectl apply -f https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.33.1/controller.yaml
 
