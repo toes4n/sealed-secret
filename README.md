@@ -61,7 +61,7 @@ Reference the secret in Pod/Deployment definitions as usual:
     
 Application will access the secret as if it was any standard Kubernetes Secret.​
 
-7. Store Only SealedSecret Manifests in Git
+### 7. Store Only SealedSecret Manifests in Git
 Keep only SealedSecret YAML files (sealedsecret.yaml) in source control.
 
 Never commit plain Kubernetes Secret files.​
