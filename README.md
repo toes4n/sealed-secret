@@ -4,7 +4,7 @@
 Install the server-side controller and CRD into cluster (namespace: kube-system):
 
 
-    kubectl apply -f https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.32.2/controller.yaml
+    kubectl apply -f https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.33.1/controller.yaml
 
 This deploys the controller and sets up the CRD.​
 
@@ -69,7 +69,7 @@ Never commit plain Kubernetes Secret files.​
 ### Optional: Compile from Source (if alternate method needed)
 If a required binary is missing, you can compile using Go:
 
-    go install github.com/bitnami-labs/sealed-secrets/cmd/kubeseal@v0.32.2
+    go install github.com/bitnami-labs/sealed-secrets/cmd/kubeseal@v0.33.1
     $(go env GOPATH)/bin/kubeseal --version
 This binary matches build system and always works for ARM64.
 
