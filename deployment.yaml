@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: secret-test
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: secret-test
+  template:
+    metadata:
+      labels:
+        app: secret-test
+    spec:
+      containers:
+      - name: secret-test-container
+        image: busybox
+        command: [ "sh", "-c", "env; sleep 3600" ]
+        envFrom:
+        - secretRef:
+            name: my-secret
