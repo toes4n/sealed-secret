@@ -5,6 +5,7 @@ Install the server-side controller and CRD into cluster (namespace: kube-system)
 
 
 kubectl apply -f https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.32.2/controller.yaml
+
 This deploys the controller and sets up the CRD.​
 
 ### 2. Install kubeseal CLI (Client-Side)
